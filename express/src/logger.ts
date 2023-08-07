@@ -14,7 +14,6 @@ const fileFormat = printf(
   ({ level, message, label, timestamp }) =>
     `${timestamp} [${label}] ${level}: ${message}`,
 );
-
 const loggerFormat = combine(
   labelFormat({ label: 'Project Name' }),
   timestampFormat(),
@@ -22,7 +21,6 @@ const loggerFormat = combine(
 );
 
 const logDir = `${process.cwd()}/logs`;
-
 const commonTransportOptions = {
   zippedArchive: true,
   maxSize: '20m',
