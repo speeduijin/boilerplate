@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "pm2 start ./dist/index",
-    "build": "corss-env NODE_ENV=production PORT=80 && npx tsc",
+    "build": "cross-env NODE_ENV=production PORT=80 && npx tsc",
     "dev": "nodemon --exec ts-node --files ./src/index "
   },
   "license": "MIT",
