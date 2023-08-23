@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 
 import logger from './logger';
-import { notFoundMiddleware, errorHandler } from './middlewares';
+import { notFound, errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
@@ -29,7 +29,7 @@ app.use(
   morgan(isProduction ? 'combined' : 'dev', {
     stream: {
       write: (message) => {
-        logger.http(message.trim());
+        logger.info(message);
       },
     },
   }),
@@ -50,7 +50,11 @@ app.use(
   }),
 );
 
-app.use(notFoundMiddleware);
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.use(notFound);
 app.use(errorHandler);
 
 export default app;
